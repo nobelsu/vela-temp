@@ -17,7 +17,7 @@ def row_to_formatted_string(row: dict) -> str:
     
     industry = row.get("industry", "")
     ipos = parse_json_field(row.get("ipos"))
-    acquisition = parse_json_field(row.get("acquisitions"))
+    acquisitions = parse_json_field(row.get("acquisitions"))
     educations_json = parse_json_field(row.get("educations_json"))
     jobs_json = parse_json_field(row.get("jobs_json"))
     anonymised_prose = row.get("anonymised_prose", "").strip()
@@ -25,10 +25,10 @@ def row_to_formatted_string(row: dict) -> str:
     # Build formatted multiline string
     formatted = f"""
         industry: "{industry}",
-        ipos: {json.dumps(ipos, indent=12)},
-        acquisitions: {json.dumps(acquisition, indent=12)},
-        educations_json: {json.dumps(educations_json, indent=12)},
-        jobs_json: {json.dumps(jobs_json, indent=12)},
+        ipos: {json.dumps(ipos)},
+        acquisitions: {json.dumps(acquisitions)},
+        educations_json: {json.dumps(educations_json)},
+        jobs_json: {json.dumps(jobs_json)},
         anonymised_prose: \"\"\"
             {anonymised_prose}
         \"\"\"

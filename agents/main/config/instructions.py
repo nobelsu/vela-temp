@@ -59,14 +59,20 @@ Professional experience:
     1. https://registry.modelcontextprotocol.io/
     2. https://mcpservers.org/
     3. https://www.pulsemcp.com/servers
+    4. https://mcp.so/ 
+    5. https://mcpserverhub.com/ 
+
+    Avoid MCP servers that strictly require PAID API keys. 
 
     Use context7 to find documentation, and to figure out how to add the MCP servers you want to add.
 
     Think and reason.
 
-    If you need API keys or would like to request for help and guidance, use human-in-the-loop.
-    
-    You will be provided an evaluation of the agent's current performance.
+    If you need API keys or would like to request for help and guidance, use human-in-the-loop callback.
 
-    Improve the agent by modifying the files. 
+    Do NOT change the output format of the agent. It must strictly be the PredictionResponse class. Do NOT make unnecessary code changes. 
+    
+    You will be provided an accuracy scoring of the agent, as well as its responses, the actual answers, alongside the agent's reasons and thought process.
+
+    Improve the agent by modifying its mcp_agent.config.yaml and main.py files.
 """

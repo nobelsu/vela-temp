@@ -1,1 +1,1 @@
-centralized = ["sequential-thinking", "context7", "filesystem", "think-mcp", "g-search", "fetcher", "mcp-compass", "mcp-registry"]
+centralized = ["sequential-thinking", "context7", "filesystem", "g-search", "fetcher", "mcp-compass", "mcp-registry"]

@@ -25,7 +25,7 @@ async def promptAgent(name, instruction, server_names, prompt):
 
         async with agent:
             llm = await agent.attach_llm(GoogleAugmentedLLM)
-            result = await llm.generate(
+            result = await llm.generate_str(
                 message=prompt,
                 request_params=RequestParams(
                     max_iterations=30  # Set your desired limit
@@ -34,14 +34,7 @@ async def promptAgent(name, instruction, server_names, prompt):
             
             end = time.time()
             logger.info(f"[{name}] Worked for {end-start}")
-
-            return result
-        
-async def integrate(prompt):
-    return await promptAgent("integration_agent", Instructions.integration, Servers.integration, prompt)
+            print("Result:\n", result)
 
 async def central(prompt):
     return await promptAgent("centralized_agent", Instructions.centralized, Servers.centralized, prompt)
-
-async def evaluate(prompt):
-    return await promptAgent("evaluation_agent", Instructions.evaluation, Servers.evaluation, prompt)

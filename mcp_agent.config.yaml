@@ -43,12 +43,6 @@ mcp:
          "@liuyoshio/mcp-compass"
       ]
 
-    think-mcp:
-      command: "uvx"
-      args: ["think-mcp", "--advanced"]
-      env:
-        TAVILY_API_KEY: "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"
-
     filesystem: 
       command: "npx"
       args: [
