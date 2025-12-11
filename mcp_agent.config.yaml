@@ -13,27 +13,21 @@ logger:
 mcp:
   servers:
     g-search: 
-      name: "g-search"
-      description: "Google Search tool"
       command: "npx"
       args: ["-y", "g-search-mcp", "--debug"]
 
     fetcher:
-      name: "fetcher"
-      description: "Web page fetching tool"
       command: "npx"
       args: ["-y", "fetcher-mcp", "--debug"]
 
     sequential-thinking: 
-      name: "sequential-thinking"
-      description: "Server to enable sequential thinking for AI agents"
       command: "npx"
       args: [
         "-y",
         "@modelcontextprotocol/server-sequential-thinking"
       ]
       env: 
-        MAX_HISTORY_SIZE": "5000"
+        MAX_HISTORY_SIZE": "2000"
     
     mcp-registry: 
       command: "npx"

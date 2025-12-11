@@ -1,12 +1,7 @@
-from agents.web_agent.main import findMCP
-from agents.research_agent.main import researchMCP
-from agents.main_agent.main import iterateMCP
 import time
 import asyncio
 
-if __name__ == "__main__":
-    start = time.time()
-    asyncio.run(iterateMCP("""   
+instructions = """   
         TASK: Modify main.py, the instructions in main.py and mcp_agent.config.yaml of the prediction agent based on an evaluation of this report. You do not need my approval to make changes.
 
         RESULTS REPORT:
@@ -30,7 +25,11 @@ if __name__ == "__main__":
         7. Early traction suggests a promising problem-solution fit, backed by conversations with real users. Still, the current market hypothesis is unproven at scale, and the team will need to validate whether the demand extends beyond early adopters.
 
         8. The founder shows strong leadership qualities and an ability to attract early talent, which is critical for building momentum. But maintaining culture and alignment may prove challenging if rapid hiring occurs before foundational processes are in place.
-    """))
+    """
+
+if __name__ == "__main__":
+    start = time.time()
+    # asyncio.run(findMCP())
     end = time.time()
     t = end - start
 
