@@ -12,26 +12,26 @@ app = MCPApp(name="research-agent")  # settings=settings)
 instruction = """
     You are a researcher agent. 
 
-    You are trying to find ways to improve the set of Model Context Protocol (MCP) servers provided to another AI agent that predicts whether or not a start up will succeed based on anonymized founder profile. 
+    You are trying to find ways to improve the set of Model Context Protocol (MCP) servers and APIs provided to another AI agent that predicts whether or not a start up will succeed based on anonymized founder profile. 
 
     Use the sequential-thinking to work through this problem step by step.
     
-    Use g-search and fetcher at steps where they are required.
+    Use arxiv-mcp-server, g-search and fetcher at steps where they are required.
     
-    You will be provided a list of MCP servers currently used by this AI agent, as well as an evaluation of its performance.
+    You will be provided a list of MCP servers and APIs currently used by this AI agent, as well as an evaluation of its performance.
 
-    Make an updated list of MCP servers the AI agent should use. 
+    Make an updated list of MCP servers or APIs the AI agent should use. 
 
     The output should be a list in the format of:
     
-    1. MCP Server 1
-    2. MCP Server 2
-    3. MCP Server 3
+    1. MCP Server / API 1
+    2. MCP Server / API 2
+    3. MCP Server / API 3
     ...
 
-    This list should be limited to 5. Explain why each MCP server has been selected.
+    The list MUST consist of MCP servers or APIs only. 
 
-    The list MUST consist of MCP servers only. A quick way to verify if something is an MCP server is if it directly mentions any of the keywords: "MCP server", "Model Context Protocol server"
+    Explain why for each.
 """
 
 async def researchMCP(prompt):
@@ -44,7 +44,7 @@ async def researchMCP(prompt):
         agent = Agent(
             name="research-agent",
             instruction=instruction,
-            server_names=["g-search", "fetcher", "sequential-thinking"],
+            server_names=["g-search", "fetcher", "arxiv-mcp-server", "sequential-thinking"],
         )
 
         async with agent:
@@ -64,11 +64,15 @@ async def researchMCP(prompt):
 if __name__ == "__main__":
     start = time.time()
     asyncio.run(researchMCP("""
-        Current tools: 
+        Current functionalities: 
         - File editing
+        - Web browsing
+        - Web scraping 
+                            
+        No APIs provided.
                             
         Performance:
-        Poor. Tool does not seem to be used.
+        Poor. File editing seems irrelevant. Web browsing and scraping is used but the agent seems to be lacking reasoning.
     """))
     end = time.time()
     t = end - start

@@ -12,22 +12,20 @@ from mcp_agent.workflows.llm.augmented_llm_openai import OpenAIAugmentedLLM
 app = MCPApp(name="prediction-agent")  # settings=settings)
 
 instruction = """
-    You are an agent whose job is to predict whether or not a start-up will be an outlier success given the founder and startup profile:
+    You are an agent whose job is to predict whether a start-up will be an outlier success, based on founder profiles, team dynamics, and economic contexts.
 
-    The data includes:
-    - industry: The industry which the startup is operating in
-    - ipos: Any previous IPOs by the founder
-    - acquisitions: Any previous acquisitions by the founder
-    - educations_json: Containing educational background of the founder in JSON
-    - jobs_json: Containing professional background of the founder in JSON
-    - anonymised_prose: Containing information on educational and professional background of the founder. 
+    Consider the following data aspects:
+    - Industry specifics and current economic conditions
+    - Previous exits and financial achievements like IPOs, acquisitions, and funding rounds
+    - Detailed educational and professional history of the founders, including roles and major achievements
+    - Team composition and dynamics, focusing on complementary skills and potential friction risks.
     
     A start-up is considered successful if:
     - Exits via IPO at a valuation exceeding $500M;
     - Gets acquired for more than $500M;
     - Raises over $500M in total funding.
 
-    Use sequential-thinking to facilitate a detailed, step-by-step thinking process for problem-solving and analysis, ensuring each decision is backed by the correct reasoning and tool calls are sequenced in the right order.
+    Use sequential-thinking to facilitate a meticulous, step-by-step problem-solving process, ensuring each decision aligns with a comprehensive analysis of educational, economic, and team-related data. If needed, leverage general data exploration tools to enrich understanding of market contexts.
     
     The other servers include: 
     g-search to search for relevant information that could help with reasoning.
