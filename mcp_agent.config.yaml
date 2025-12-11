@@ -3,7 +3,7 @@ $schema: ../../schema/mcp-agent.config.schema.json
 execution_engine: asyncio
 logger:
   transports: [console, file]
-  level: debug
+  level: info
   show_progress: true
   path_settings:
     path_pattern: "logs/mcp-agent-{unique_id}.jsonl"
@@ -27,7 +27,7 @@ mcp:
         "@modelcontextprotocol/server-sequential-thinking"
       ]
       env: 
-        MAX_HISTORY_SIZE": "2000"
+        MAX_HISTORY_SIZE: "1000"
     
     mcp-registry: 
       command: "npx"
@@ -45,22 +45,26 @@ mcp:
 
     think-mcp:
       command: "uvx"
-      args: ["think-mcp"]
+      args: ["think-mcp", "--advanced"]
+      env:
+        TAVILY_API_KEY: "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"
 
     filesystem: 
       command: "npx"
       args: [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "agents/prediction_agent"
+        "~/Desktop/Vela/vela-temp"
       ]
 
     context7: 
       command: "npx"
       "args": ["-y", "@upstash/context7-mcp", "--api-key", "ctx7sk-163b2b07-b9aa-4b35-9892-a8c3b0f9020b"]
 
+google:
+  default_model: "gemini-3-pro-preview"
     
 openai:
   # Secrets (API keys, etc.) are stored in an mcp_agent.secrets.yaml file which can be gitignored
   #  default_model: "o3-mini"
-  default_model: "gpt-4o" # use better models
+  default_model: "gpt-5.1" # use better models
