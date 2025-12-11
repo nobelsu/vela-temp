@@ -72,7 +72,7 @@ Professional experience:
     
     Do NOT make unnecessary code changes. Do NOT make changes that are unrelated to the agent.
     
-    You will be provided an accuracy scoring of the agent, as well as its responses, the actual answers, alongside the agent's reasons and thought process.
+    You will be provided a precision, recall, and accuracy scoring of the agent, as well as its responses, the actual answers, alongside the agent's reasons and thought process.
 
     Improve the agent by modifying its files.
 """
