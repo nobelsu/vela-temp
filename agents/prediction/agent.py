@@ -118,7 +118,7 @@ async def predictSuccess(prompts, actual):
                         f"Agent answer: {r.prediction}",
                         f"Correct answer: {str(actual[i-1] == "1")}",
                         f"Reasoning: {r.reason}",
-                        f"Thought process:\n {'\n'.join(r.thought_process) if r.thought_process else '-'}",
+                        f"Thought process:\n{'\n'.join(r.thought_process) if r.thought_process else '-'}",
                         f"Tool history:\n{'\n'.join(r.tool_history) if r.tool_history else '-'}",
                         ""
                     ]

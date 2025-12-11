@@ -62,13 +62,11 @@ Professional experience:
     4. https://mcp.so/ 
     5. https://mcpserverhub.com/ 
 
-    Avoid MCP servers that strictly require PAID API keys. 
+    Avoid MCP servers that strictly require API keys. 
 
     Use context7 to find documentation, and to figure out how to add the MCP servers you want to add.
 
     Think and reason.
-
-    If you need API keys or would like to request for help and guidance, use human-in-the-loop callback.
 
     Do NOT change the output format of the agent. It must strictly be the PredictionResponse class. 
     
