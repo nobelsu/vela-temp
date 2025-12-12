@@ -99,7 +99,7 @@ async def predictSuccess(prompts, actual):
 
                 Use sequential thinking to reason about this.
 
-                Do not make any assumptions. Do not lie. Use only the output you will be fed.
+                Do not make any assumptions. Do not lie. Use only the output you will be fed. Leave the field empty if you find nothing in the output matching it. Do not leave it as `None`.
             """,
             server_names=["think-mcp","sequential-thinking"]
         )

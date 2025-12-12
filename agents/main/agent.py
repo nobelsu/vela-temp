@@ -18,7 +18,7 @@ class MainResponse(BaseModel):
     thought_process: list[str] 
     changes: list[str]
 
-async def promptAgent(name, instruction, server_names, prompt):
+async def promptAgent(name, instruction, server_names, prompt, iter, model):
     start = time.time()
     async with app.run() as agent_app:
         logger = agent_app.logger
@@ -41,7 +41,8 @@ async def promptAgent(name, instruction, server_names, prompt):
             result = await llm.generate_str(
                 message=prompt,
                 request_params=RequestParams(
-                    max_iterations=40  # Set your desired limit
+                    max_iterations=iter,
+                    model=model  # Set your desired limit
                 ),
             )
             # converted_result = await convertor_llm.generate_structured(
@@ -79,6 +80,10 @@ async def uploadChanges(text):
         await db.commit()
 
 async def central(prompt):
-    response = await promptAgent("centralized_agent", Instructions.centralized, Servers.centralized, prompt)
+    response = await promptAgent("centralized_agent", Instructions.centralized, Servers.centralized, prompt, 40, "gemini-3-pro-preview")
     # formattedResponse = f"Thought process:\n{'\n'.join(response.thought_process) if response.thought_process else '-'}\n\nChanges:\n{'\n'.join(response.changes) if response.changes else '-'}"
     await uploadChanges(response)
+
+async def summarize(prompt):
+    response = await promptAgent("summarizer_agent", Instructions.summarizer, [], prompt, 10, "gemini-2.5-flash")
+    return response

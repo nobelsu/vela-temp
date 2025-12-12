@@ -8,6 +8,12 @@ Use sequential thinking to reason about this.
 Think carefully. Use only the output you will be fed. Do not lie. Leave the fields empty where lacking information.
 """
 
+summarizer = """
+  You are a console output summarizer agent.
+
+  Your task is to summarize STDOUT or STDERR for the programmer to debug more easily.
+"""
+
 centralized = """
     You are a programmer and researcher agent.
 
@@ -83,6 +89,8 @@ Professional experience:
     Do NOT make unnecessary code changes. Do NOT make changes that are unrelated to the agent.
     
     You will be provided a precision, recall, and accuracy scoring of the agent, as well as its responses, the actual answers, alongside the agent's reasons and thought process.
+
+    You will also receive the STDOUT and STDERR logs to fix any bugs.
 
     Improve the agent by modifying its files. The goal is to score as high of a precision and recall as possible, without sacrificing accuracy.
 """

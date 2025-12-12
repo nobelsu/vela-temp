@@ -28,9 +28,10 @@ async def train():
             rows.append(row_to_formatted_string(row))
             actual.append(row.get("success"))
             if len(rows) >= 10:
-                subprocess.run(["uv", "run", "agents/prediction/agent.py", "--p"] + rows + ["--a"] + actual)
+                proc_res = subprocess.run(["uv", "run", "agents/prediction/agent.py", "--p"] + rows + ["--a"] + actual)
                 instructions = await getLatestReport()
-                await MainAgent.central(instructions)
+                augmentedInstructions = instructions + "\n\nSTDOUT:\n" + await MainAgent.summarize(proc_res.stdout) + "\n\nSTDERR:\n" + await MainAgent.summarize(proc_res.stderr)
+                await MainAgent.central(augmentedInstructions)
                 rows = []
                 actual = []
     end = time.time()
