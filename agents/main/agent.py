@@ -29,32 +29,32 @@ async def promptAgent(name, instruction, server_names, prompt):
             server_names=server_names,
         )
 
-        convertor_agent = Agent(
-            name="convertor-agent",
-            instruction=Instructions.convertor,
-            server_names=["think-mcp","sequential-thinking"]
-        )
+        # convertor_agent = Agent(
+        #     name="convertor-agent",
+        #     instruction=Instructions.convertor,
+        #     server_names=["think-mcp","sequential-thinking"]
+        # )
 
         async with agent:
             llm = await agent.attach_llm(GoogleAugmentedLLM)
-            convertor_llm = await convertor_agent.attach_llm(GoogleAugmentedLLM)
+            # convertor_llm = await convertor_agent.attach_llm(GoogleAugmentedLLM)
             result = await llm.generate_str(
                 message=prompt,
                 request_params=RequestParams(
-                    max_iterations=20  # Set your desired limit
+                    max_iterations=40  # Set your desired limit
                 ),
             )
-            converted_result = await convertor_llm.generate_structured(
-                message=result,
-                response_model=MainResponse,
-                request_params=RequestParams(
-                    model="gemini-2.5-flash"  # Set your desired limit
-                ),
-            )
+            # converted_result = await convertor_llm.generate_structured(
+            #     message=result,
+            #     response_model=MainResponse,
+            #     request_params=RequestParams(
+            #         model="gemini-2.5-flash"  # Set your desired limit
+            #     ),
+            # )
             
             end = time.time()
             logger.info(f"[{name}] Worked for {end-start}")
-            return converted_result
+            return result
 
 async def uploadChanges(text):
     async with aiosqlite.connect("files.db") as db:
@@ -80,5 +80,5 @@ async def uploadChanges(text):
 
 async def central(prompt):
     response = await promptAgent("centralized_agent", Instructions.centralized, Servers.centralized, prompt)
-    formattedResponse = f"Thought process:\n{'\n'.join(response.thought_process) if response.thought_process else '-'}\n\nChanges:\n{'\n'.join(response.changes) if response.changes else '-'}"
-    await uploadChanges(formattedResponse)
+    # formattedResponse = f"Thought process:\n{'\n'.join(response.thought_process) if response.thought_process else '-'}\n\nChanges:\n{'\n'.join(response.changes) if response.changes else '-'}"
+    await uploadChanges(response)
