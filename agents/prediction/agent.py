@@ -49,7 +49,7 @@ settings = Settings(
             )
         }
     ),
-    google=GoogleSettings(default_model="gemini-3-pro-preview"),
+    google=GoogleSettings(default_model="gemini-2.5-flash"),
 )
 
 async def predictSuccess(prompts, actual):
@@ -57,9 +57,9 @@ async def predictSuccess(prompts, actual):
 
     async with app.run() as agent_app:
         prediction_instruction = f"""
-            You are an agent whose job is to predict whether a start-up will be an outlier success, based on founder profiles.
+            You are an agent whose job is to predict whether a start-up will be an outlier success, based on the founder's anonymised profile.
             
-            You will be given an anonymised founder's profile. You will be provided the data:
+            You will be provided the data:
             1. industry: The industry which the start-up is operating in. 
             2. ipos: Previous IPOs by the founder
             3. acquisitions: Previous acquisitions by the founder
@@ -72,11 +72,11 @@ async def predictSuccess(prompts, actual):
             - Gets acquired for more than $500M;
             - Raises over $500M in total funding.
 
-            Your task is to predict whether or not the founder will succeed. You will need to output:
-            1. prediction: Whether or not the founder will succeed
+            Your task is to predict whether or not the startup will succeed. You will need to output:
+            1. prediction: Whether or not the startup will succeed
             2. reason: Reason for prediction
             3. thought_process: Sequence of thoughts to arrive at your conclusion
-            4. tool_history: Sequence of MCP servers and tools used to arrive at your conclusion. Be specific about what you obtained from using them. If you did not use the server, do not lie and return an empty list. 
+            4. tool_history: Sequence of MCP servers and tools used to arrive at your conclusion. Be specific about what you obtained from using them. If you did not use the server, do not lie.
 
             Use sequential thinking to reason about this.
             
@@ -99,7 +99,7 @@ async def predictSuccess(prompts, actual):
 
                 Use sequential thinking to reason about this.
 
-                Think carefully. Do not make any assumptions. Do not lie. Use only the output you will be fed.
+                Do not make any assumptions. Do not lie. Use only the output you will be fed.
             """,
             server_names=["think-mcp","sequential-thinking"]
         )
@@ -119,9 +119,6 @@ async def predictSuccess(prompts, actual):
                 converted_result = await convertor_llm.generate_structured(
                     message=result,
                     response_model=PredictionResponse, 
-                    request_params=RequestParams(
-                        model="gemini-2.5-flash",
-                    ),
                 )
                 results.append(converted_result)
 

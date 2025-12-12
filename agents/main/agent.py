@@ -41,7 +41,7 @@ async def promptAgent(name, instruction, server_names, prompt):
             result = await llm.generate_str(
                 message=prompt,
                 request_params=RequestParams(
-                    max_iterations=25  # Set your desired limit
+                    max_iterations=20  # Set your desired limit
                 ),
             )
             converted_result = await convertor_llm.generate_structured(
