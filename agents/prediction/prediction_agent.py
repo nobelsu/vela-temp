@@ -43,10 +43,6 @@ settings = Settings(
                 transport="sse",
                 url="http://localhost:11235/mcp/sse"
             ),
-            "arxiv": MCPServerSettings(
-                transport="sse",
-                url="http://localhost:8050/sse"
-            )
         }
     ),
     google=GoogleSettings(default_model="gemini-2.5-flash"),
@@ -74,7 +70,7 @@ async def predictSuccess(prompts, success_values):
 
             Use sequential thinking to reason about this.
             
-            Use arxiv to find research papers on arxiv, then use crawl4ai perform deep research on reports or articles.
+            Use crawl4ai perform deep research on reports or articles.
 
             Your task is to predict whether or not the startup will succeed. You will need to output:
             1. prediction: Whether or not the startup will succeed (True/False)

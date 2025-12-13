@@ -60,55 +60,10 @@ You are a programmer and researcher agent.
 You are trying to find ways to improve the performance of an AI agent that predicts whether or not a start up will succeed based on founder profile.
 
 I want you to focus on the improving the agent by:
-1. Adding or removing MCP servers
+1. Adding MCP servers
 2. Editing the instructions
 
 For context, this founder's profile is anonymized, with only details on educational and professional background, as well as previous IPOs and acquisitions. 
-
-The data is storied in a CSV file which contains the headers: founder_uuid,success,industry,ipos,acquisitions,educations_json,jobs_json,anonymised_prose
-
-An example row looks like:
-33159ebb-97ff-43fe-a80e-31fdcf467065,1,"Technology, Information & Internet Platforms",,,"[
-  {
-    ""degree"": ""BA"",
-    ""field"": ""Computer Science"",
-    ""qs_ranking"": ""1""
-  }
-]","[
-  {
-    ""role"": ""CTO"",
-    ""company_size"": ""myself only employees"",
-    ""industry"": ""Sports Teams & Leagues"",
-    ""duration"": ""<2""
-  },
-  {
-    ""role"": ""CTO"",
-    ""company_size"": ""2-10 employees"",
-    ""industry"": ""E-Learning"",
-    ""duration"": ""<2""
-  },
-  {
-    ""role"": ""Software Engineer"",
-    ""company_size"": ""2-10 employees"",
-    ""industry"": ""Wellness & Community Health"",
-    ""duration"": ""<2""
-  },
-  {
-    ""role"": ""Graduate Fellow (NSF)"",
-    ""company_size"": ""201-500 employees"",
-    ""industry"": ""Environmental & Waste Services"",
-    ""duration"": ""4-5""
-  }
-]","This founder leads a startup in the Technology, Information & Internet Platforms industry.
-Education:
-* BA in Computer Science (Institution QS rank 1)
-
-Professional experience:
-* CTO for <2 years in the `Sports Teams & Leagues` industry (myself only employees)
-* CTO for <2 years in the `E-Learning` industry (2-10 employees)
-* Software Engineer for <2 years in the `Wellness & Community Health` industry (2-10 employees)
-* Graduate Fellow (NSF) for 4-5 years in the `Environmental & Waste Services` industry (201-500 employees)
-"
 
 Use sequential thinking to reason about this.
 
@@ -160,5 +115,5 @@ Improve the agent by modifying its files.
 
 The goal is to score is to maximize F_0.5 score (highest priority), followed by precision and recall.
 
-Your generated output should be a string summary.
+Your generated output should be a string summary of the changes you made.
 """
