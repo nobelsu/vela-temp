@@ -2,23 +2,18 @@ $schema: ../../schema/mcp-agent.config.schema.json
 
 execution_engine: asyncio
 logger:
-  transports: [console, file]
-  level: info
+  transports: [file]
+  level: debug
   show_progress: true
   path_settings:
-    path_pattern: "logs/mcp-agent-{unique_id}.jsonl"
-    unique_id: "timestamp" # Options: "timestamp" or "session_id"
-    timestamp_format: "%Y%m%d_%H%M%S"
+    path_pattern: "logs/main/main-{unique_id}.jsonl"
+    unique_id: "session_id"
 
 mcp:
   servers:
-    g-search: 
+    web-search-mcp: 
       command: "npx"
-      args: ["-y", "g-search-mcp"]
-
-    fetcher:
-      command: "npx"
-      args: ["-y", "fetcher-mcp"]
+      args: ["-y", "@guhcostan/web-search-mcp@latest"]
 
     sequential-thinking: 
       command: "npx"
@@ -76,12 +71,11 @@ mcp:
         "ghcr.io/github/github-mcp-server"
       ]
       env: 
-        GITHUB_PERSONAL_ACCESS_TOKEN: ""
+        GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+    
+    arxiv:
+      transport: "sse"
+      url: "http://localhost:8050/sse"
 
 google:
   default_model: "gemini-3-pro-preview"
-    
-openai:
-  # Secrets (API keys, etc.) are stored in an mcp_agent.secrets.yaml file which can be gitignored
-  #  default_model: "o3-mini"
-  default_model: "gpt-5.1" # use better models

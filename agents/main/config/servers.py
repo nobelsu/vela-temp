@@ -1,1 +1,0 @@
-centralized = ["sequential-thinking", "context7", "filesystem", "crawl4ai", "github", "mcp-compass", "mcp-registry"]
