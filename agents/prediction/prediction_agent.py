@@ -74,7 +74,9 @@ async def predictSuccess(prompts, success_values):
 
             Your task is to predict whether or not the startup will succeed. You will need to output:
             1. prediction: Whether or not the startup will succeed (True/False)
-            2. reason: Reasoning for prediction
+            2. reason: One paragraph reasoning for prediction
+
+            DO NOT output anything else.
             
             Use sequential thinking to reason and formulate a plan.
             
@@ -175,9 +177,9 @@ async def predictSuccess(prompts, success_values):
                 if (tp+fn+fp):
                     fscore = f"{(1.25*tp)/(1.25*tp+0.25*fn+fp)}"
 
-                with open("output/values.csv", "w", newline="", encoding="utf-8") as f:
+                with open("values.csv", "w", newline="", encoding="utf-8") as f:
                     w = csv.writer(f)
-                    w.writerows([tp,fp,tn,fn])
+                    w.writerow([tp,fp,tn,fn])
                 
                 return (f"**REPORT OF RESULTS:**\n\nF_0.5 score: {fscore}\nPrecision: {precision}\nRecall: {recall}\n\n") + ("\n".join(blocks))
 
