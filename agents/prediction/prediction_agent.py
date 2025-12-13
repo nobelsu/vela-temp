@@ -82,7 +82,7 @@ async def predictSuccess(prompts, success_values):
         agent = Agent(
             name="prediction-agent",
             instruction=prediction_instruction,
-            server_names=["crawl4ai","sequential-thinking","arxiv"],
+            server_names=["crawl4ai","sequential-thinking"],
         )
         convertor_agent = Agent(
             name="convertor-agent",
