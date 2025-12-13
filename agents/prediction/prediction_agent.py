@@ -177,7 +177,7 @@ async def predictSuccess(prompts, success_values):
                 if (tp+fn+fp):
                     fscore = f"{(1.25*tp)/(1.25*tp+0.25*fn+fp)}"
 
-                with open("values.csv", "w", newline="", encoding="utf-8") as f:
+                with open("values.csv", "a", newline="", encoding="utf-8") as f:
                     w = csv.writer(f)
                     w.writerow([tp,fp,tn,fn])
                 
